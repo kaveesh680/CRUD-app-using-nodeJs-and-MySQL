@@ -28,6 +28,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileupload());// configure fileupload
 app.use(bodyParser.json());// parse form data client
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.get("/",function(req,res){
+  res.render("index");
+});
+
 
 app.listen(3000,function(){
   console.log("Server is running");
