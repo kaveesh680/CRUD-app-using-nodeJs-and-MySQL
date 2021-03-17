@@ -1,37 +1,39 @@
 <%- include ("partials/header.ejs") -%>
 
-
-<table class="table">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
-      <th scope="col">Position</th>
-      <th scope="col">Number</th>
-      <th scope="col">User Name</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">ID</th>
-      <td>First Name</th>
-      <td>Last Name</th>
-      <td>Position</th>
-      <td>Number</th>
-      <td>User Name</th>
-      <td>Action</th>
-    </tr>
+<% if(players.length > 0){ %>
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Image</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Position</th>
+        <th scope="col">Number</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% players.forEach(function(player){ %>
+        <tr>
+          <th scope="row"><%=player.id%></th>
+          <td><img src="assets/img<%= player.image%>" alt="Player-image"></td>
+          <td><%=player.first_name%></td>
+          <td><%=player.last_name%></td>
+          <td><%=player.position%></td>
+          <td><%=player.number%></td>
+          <td><%=player.user_name%></td>
+          <td>
+            <a href="/edit-player/<%=player.id%>" role="button" target="_blank" rel="noopener noreferrer" class="btn btn-success btn-sm">Edit</a>
+            <a href="/delete/<%=player.id%>" role="button" class="btn btn-danger btn-sm">Delete</a>
+          </th>
+        </tr>
+      <% }); %><
+<% }else{ %>
+  <h1 class="text-center">No players found. Go <a href="/add-player" >here</a> to add players.</h1>
+<% } %>
   </tbody>
 </table>
-
-
-
-
-
-
-
-
 
 <%- include ("partials/footer.ejs") -%>
